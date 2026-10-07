@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Travel — Khám Phá Thế Giới</title>
+  <meta name="description" content="Cat Travel - Công ty dịch vụ lữ hành du lịch hàng đầu. Khám phá thế giới cùng chúng tôi với những hành trình tuyệt vời.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       CAT TRAVEL — DESIGN SYSTEM
+       Surface: Decide/Learn (Landing Page)
+       ═══════════════════════════════════════ */
+
+    :root {
+      /* Colors */
+      --ocean: #0077B6;
+      --ocean-deep: #005F8A;
+      --ocean-light: #90E0EF;
+      --ocean-pale: #CAF0F8;
+      --sun: #E8A838;
+      --sun-bright: #F2C14E;
+      --sun-glow: #FFF3D4;
+      --sand: #F5E6CA;
+      --sand-light: #FDF8F0;
+      --earth: #2D3436;
+      --earth-mid: #636E72;
+      --earth-light: #B2BEC3;
+      --white: #FFFFFF;
+      --danger: #D63031;
+      --success: #00B894;
+
+      /* Typography */
+      --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 6rem;
+      --space-5xl: 8rem;
+
+      /* Layout */
+      --max-width: 1200px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-xl: 0 16px 48px rgba(0,0,0,0.15);
+
+      /* Transitions */
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --duration: 0.3s;
+    }
+
+    /* ═══════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════ */
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--earth);
+      background: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--earth);
+      line-height: 1.25;
+      margin-bottom: var(--space-md);
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--earth-mid);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ═══════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════ */
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: background var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+    }
+
+    .nav.scrolled {
+      background: rgba(255,255,255,0.97);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ocean);
+    }
+
+    .nav-logo svg {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--earth-mid);
+      transition: color var(--duration) var(--ease);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--ocean);
+      transition: width var(--duration) var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--ocean);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--ocean);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: background var(--duration) var(--ease), transform 0.15s var(--ease);
+    }
+
+    .nav-cta:hover {
+      background: var(--ocean-deep);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    /* Mobile menu */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--earth);
+      transition: all var(--duration) var(--ease);
+      position: relative;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: var(--earth);
+      transition: all var(--duration) var(--ease);
+    }
+
+    .nav-toggle span::before { top: -7px; }
+    .nav-toggle span::after { top: 7px; }
+
+    .nav-toggle.active span { background: transparent; }
+    .nav-toggle.active span::before { top: 0; transform: rotate(45deg); }
+    .nav-toggle.active span::after { top: 0; transform: rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: var(--space-xl);
+        gap: var(--space-lg);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all var(--duration) var(--ease);
+      }
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════ */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #003D5B 0%, #00587A 30%, #0077B6 60%, #0096C7 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 70% 60%, rgba(144,224,239,0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(232,168,56,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Decorative wave */
+    .hero-wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Floating decorative elements */
+    .hero-decor {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-decor .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.08;
+      background: var(--white);
+    }
+
+    .hero-decor .c1 { width: 400px; height: 400px; top: -100px; right: -80px; }
+    .hero-decor .c2 { width: 250px; height: 250px; bottom: 15%; left: -60px; }
+    .hero-decor .c3 { width: 120px; height: 120px; top: 30%; right: 20%; opacity: 0.05; }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 120px var(--space-xl) 160px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .hero-text {
+      color: var(--white);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: var(--space-xl);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sun);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sun-bright);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      opacity: 0.85;
+      max-width: 480px;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all var(--duration) var(--ease);
+      min-height: 48px;
+    }
+
+    .btn-primary {
+      background: var(--sun);
+      color: var(--earth);
+    }
+
+    .btn-primary:hover {
+      background: var(--sun-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,168,56,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Hero visual — travel card stack */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-card {
+      position: relative;
+      width: 340px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      background: var(--white);
+    }
+
+    .hero-card-img {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-img::after {
+      content: '🏝️';
+      font-size: 80px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: grayscale(0.2);
+    }
+
+    .hero-card-body {
+      padding: var(--space-lg);
+    }
+
+    .hero-card-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .hero-card-body p {
+      font-size: 0.85rem;
+      color: var(--earth-mid);
+    }
+
+    .hero-card-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .hero-card-price strong {
+      font-size: 1.2rem;
+      color: var(--ocean);
+    }
+
+    .hero-card-price .rating {
+      font-size: 0.85rem;
+      color: var(--sun);
+    }
+
+    /* Floating stat pill */
+    .hero-stat {
+      position: absolute;
+      background: var(--white);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      z-index: 4;
+    }
+
+    .hero-stat-1 {
+      bottom: 40px;
+      left: -40px;
+    }
+
+    .hero-stat-2 {
+      top: 20px;
+      right: -30px;
+    }
+
+    .hero-stat .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .hero-stat .icon.blue { background: var(--ocean-pale); }
+    .hero-stat .icon.gold { background: var(--sun-glow); }
+
+    .hero-stat .label {
+      font-size: 0.75rem;
+      color: var(--earth-mid);
+    }
+
+    .hero-stat .value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--earth);
+    }
+
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 140px;
+      }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { display: none; }
+    }
+
+    /* ═══════════════════════════════════════
+       ABOUT SECTION
+       ═══════════════════════════════════════ */
+
+    .about {
+      padding: var(--space-5xl) 0;
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--sand) 0%, var(--ocean-pale) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-img-main::after {
+      content: '✈️';
+      font-size: 100px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .about-img-accent {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 180px;
+      height: 180px;
+      border-radius: var(--radius-md);
+      background: var(--ocean);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-img-accent .num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .about-img-accent .txt {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin-top: var(--space-xs);
+    }
+
+    .about-text p {
+      color: var(--earth-mid);
+      margin-bottom: var(--space-lg);
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .about-feature .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--ocean-pale);
+      color: var(--ocean);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+      .about-img-accent { bottom: -16px; right: -8px; width: 140px; height: 140px; }
+      .about-img-accent .num { font-size: 2rem; }
+    }
+
+    /* ═══════════════════════════════════════
+       SERVICES SECTION
+       ═══════════════════════════════════════ */
+
+    .services {
+      padding: var(--space-5xl) 0;
+      background: var(--sand-light);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .services-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--space-2xl) var(--space-lg);
+      text-align: center;
+      transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      margin: 0 auto var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .service-icon.blue { background: var(--ocean-pale); }
+    .service-icon.gold { background: var(--sun-glow); }
+    .service-icon.sand { background: var(--sand); }
+    .service-icon.green { background: #D5F5E3; }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--earth-mid);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════
+       FEATURED DESTINATIONS
+       ═══════════════════════════════════════ */
+
+    .destinations {
+      padding: var(--space-5xl) 0;
+      background: var(--white);
+    }
+
+    .destinations-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-3xl);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .destinations-header .btn {
+      padding: 10px 24px;
+      font-size: 0.85rem;
+    }
+
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .dest-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+    }
+
+    .dest-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .dest-img {
+      width: 100%;
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dest-img .placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: var(--white);
+    }
+
+    .dest-img-1 .placeholder { background: linear-gradient(135deg, #48C9B0, #1ABC9C); }
+    .dest-img-2 .placeholder { background: linear-gradient(135deg, #5DADE2, #2E86C1); }
+    .dest-img-3 .placeholder { background: linear-gradient(135deg, #F0B27A, #E67E22); }
+    .dest-img-4 .placeholder { background: linear-gradient(135deg, #BB8FCE, #8E44AD); }
+
+    .dest-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .dest-tag.hot { background: rgba(214,48,49,0.85); }
+
+    .dest-body {
+      padding: var(--space-lg);
+    }
+
+    .dest-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .dest-location {
+      font-size: 0.82rem;
+      color: var(--earth-mid);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: var(--space-md);
+    }
+
+    .dest-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .dest-price {
+      font-size: 0.82rem;
+      color: var(--earth-mid);
+    }
+
+    .dest-price strong {
+      display: block;
+      font-size: 1.15rem;
+      color: var(--ocean);
+      font-weight: 700;
+    }
+
+    .dest-rating {
+      font-size: 0.85rem;
+      color: var(--sun);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .dest-rating span {
+      color: var(--earth-mid);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 900px) {
+      .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px) {
+      .dest-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════
+       TESTIMONIALS
+       ═══════════════════════════════════════ */
+
+    .testimonials {
+      padding: var(--space-5xl) 0;
+      background: var(--sand-light);
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .testimonials-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .test-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--space-2xl);
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .test-quote {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--ocean-pale);
+      pointer-events: none;
+    }
+
+    .test-stars {
+      color: var(--sun);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: var(--space-md);
+    }
+
+    .test-text {
+      font-size: 0.95rem;
+      color: var(--earth-mid);
+      line-height: 1.7;
+      margin-bottom: var(--space-xl);
+      font-style: italic;
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .test-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .test-avatar.a1 { background: var(--ocean); }
+    .test-avatar.a2 { background: var(--sun); }
+    .test-avatar.a3 { background: #00B894; }
+
+    .test-author-info h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .test-author-info p {
+      font-size: 0.8rem;
+      color: var(--earth-light);
+    }
+
+    @media (max-width: 900px) {
+      .test-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+    }
+
+    /* ═══════════════════════════════════════
+       CTA BANNER
+       ═══════════════════════════════════════ */
+
+    .cta-banner {
+      padding: var(--space-4xl) 0;
+      background: linear-gradient(135deg, #003D5B 0%, #0077B6 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(232,168,56,0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .cta-inner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+    }
+
+    .cta-inner p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      max-width: 520px;
+      margin: 0 auto var(--space-2xl);
+    }
+
+    /* ═══════════════════════════════════════
+       CONTACT SECTION
+       ═══════════════════════════════════════ */
+
+    .contact {
+      padding: var(--space-5xl) 0;
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-3xl);
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+    }
+
+    .contact-info > p {
+      color: var(--earth-mid);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .contact-item {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .contact-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--ocean-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-text h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .contact-item-text p,
+    .contact-item-text a {
+      font-size: 0.9rem;
+      color: var(--earth-mid);
+    }
+
+    .contact-item-text a:hover {
+      color: var(--ocean);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--sand-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+      color: var(--earth);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--earth);
+      background: var(--white);
+      transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 3px var(--ocean-pale);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--ocean);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--duration) var(--ease), transform 0.15s var(--ease);
+    }
+
+    .form-submit:hover {
+      background: var(--ocean-deep);
+      transform: translateY(-1px);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--earth-light);
+      margin-top: var(--space-md);
+    }
+
+    /* Form success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: var(--space-3xl) var(--space-xl);
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #D5F5E3;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto var(--space-lg);
+    }
+
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .form-success p {
+      color: var(--earth-mid);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ */
+
+    .footer {
+      background: var(--earth);
+      color: rgba(255,255,255,0.7);
+      padding: var(--space-3xl) 0 var(--space-xl);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .footer-brand {
+      max-width: 280px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all var(--duration) var(--ease);
+    }
+
+    .footer-social a:hover {
+      background: var(--ocean);
+      border-color: var(--ocean);
+      color: var(--white);
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-col a {
+      font-size: 0.88rem;
+      transition: color var(--duration) var(--ease);
+    }
+
+    .footer-col a:hover {
+      color: var(--ocean-light);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: var(--space-lg);
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--ocean-light);
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { max-width: 100%; grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════
+       SCROLL ANIMATIONS
+       ═══════════════════════════════════════ */
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ocean);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), background var(--duration) var(--ease);
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: var(--ocean-deep);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Cat Travel - Trang chủ">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="17" fill="#0077B6"/>
+          <path d="M11 25 C11 25 13 13 18 10 C23 13 25 25 25 25" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <circle cx="15" cy="18" r="1.5" fill="#E8A838"/>
+          <circle cx="21" cy="18" r="1.5" fill="#E8A838"/>
+          <path d="M16 21 Q18 23 20 21" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M11 14 L9 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M25 14 L27 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Cat Travel
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#services">Dịch vụ</a></li>
+        <li><a href="#destinations">Điểm đến</a></li>
+        <li><a href="#testimonials">Đánh giá</a></li>
+        <li><a href="#contact" class="nav-cta">Liên hệ</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu">
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-decor">
+      <div class="circle c1"></div>
+      <div class="circle c2"></div>
+      <div class="circle c3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Đang mở bán — Tour hè 2025
+        </div>
+        <h1>Khám Phá Thế Giới<br>Cùng <em>Cat Travel</em></h1>
+        <p class="hero-desc">
+          Trải nghiệm những hành trình du lịch tuyệt vời, được thiết kế riêng cho bạn.
+          Từ bãi biển nhiệt đới đến núi non hùng vĩ — mỗi chuyến đi là một câu chuyện.
+        </p>
+        <div class="hero-actions">
+          <a href="#destinations" class="btn btn-primary">Khám phá ngay →</a>
+          <a href="#about" class="btn btn-outline">Tìm hiểu thêm</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-img">
+          </div>
+          <div class="hero-card-body">
+            <h3>Vịnh Hạ Long</h3>
+            <p>Kỳ quan thiên nhiên thế giới, Việt Nam</p>
+            <div class="hero-card-price">
+              <strong>4.990.000₫</strong>
+              <div class="rating">★★★★★ 4.9</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-stat hero-stat-1">
+          <div class="icon blue">🌍</div>
+          <div>
+            <div class="label">Điểm đến</div>
+            <div class="value">50+</div>
+          </div>
+        </div>
+        <div class="hero-stat hero-stat-2">
+          <div class="icon gold">😊</div>
+          <div>
+            <div class="label">Khách hàng</div>
+            <div class="value">10K+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,80 C360,120 720,40 1080,80 C1260,100 1380,60 1440,80 L1440,120 L0,120 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid fade-up">
+        <div class="about-visual">
+          <div class="about-img-main"></div>
+          <div class="about-img-accent">
+            <div>
+              <span class="num">10+</span>
+              <span class="txt">năm kinh nghiệm</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="section-label">Về chúng tôi</span>
+          <h2 class="section-title">Đồng Hành Cùng Bạn Trên Mọi Hành Trình</h2>
+          <p>
+            Cat Travel được thành lập với sứ mệnh mang đến những trải nghiệm du lịch độc đáo
+            và đáng nhớ nhất cho du khách Việt Nam. Chúng tôi tin rằng mỗi chuyến đi không chỉ
+            là một kỳ nghỉ, mà là cơ hội để khám phá bản thân và thế giới xung quanh.
+          </p>
+          <p>
+            Với đội ngũ hướng dẫn viên giàu kinh nghiệm và mạng lưới đối tác toàn cầu,
+            Cat Travel cam kết mang đến dịch vụ chất lượng cao nhất với mức giá hợp lý,
+            giúp bạn tận hưởng trọn vẹn mỗi khoảnh khắc.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <span class="check">✓</span>
+              Hướng dẫn viên chuyên nghiệp
+            </div>
+            <div class="about-feature">
+              <span class="check">✓</span>
+              Giá cả minh bạch
+            </div>
+            <div class="about-feature">
+              <span class="check">✓</span>
+              Hỗ trợ 24/7
+            </div>
+            <div class="about-feature">
+              <span class="check">✓</span>
+              Đảm bảo hoàn tiền
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header fade-up">
+        <span class="section-label">Dịch vụ của chúng tôi</span>
+        <h2 class="section-title">Trải Nghiệm Du Lịch Theo Cách Của Bạn</h2>
+        <p class="section-subtitle">
+          Dù bạn thích phiêu lưu mạo hiểm hay nghỉ dưỡng thư giãn,
+          Cat Travel luôn có giải pháp phù hợp dành cho bạn.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon blue">🗺️</div>
+          <h3>Hành Trình Có Hướng Dẫn</h3>
+          <p>Tour trọn gói với hướng dẫn viên địa phương, lộ trình được thiết kế tỉ mỉ cho trải nghiệm trọn vẹn nhất.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon gold">🎒</div>
+          <h3>Du Lịch Tự Do</h3>
+          <p>Tự do khám phá theo lịch trình riêng. Chúng tôi lo vé máy bay, khách sạn — bạn lo trải nghiệm.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon sand">👨‍👩‍👧‍👦</div>
+          <h3>Gói Gia Đình</h3>
+          <p>Hành trình thân thiện với gia đình, hoạt động phù hợp mọi lứa tuổi, tạo kỷ niệm đẹp bên người thân.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon green">⛰️</div>
+          <h3>Du Lịch Mạo Hiểm</h3>
+          <p>Trekking, lặn biển, chèo kayak — dành cho những ai yêu thích thử thách và trải nghiệm mới.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DESTINATIONS ═══ -->
+  <section class="destinations" id="destinations">
+    <div class="container">
+      <div class="destinations-header fade-up">
+        <div>
+          <span class="section-label">Điểm đến nổi bật</span>
+          <h2 class="section-title">Những Điểm Đến Được Yêu Thích Nhất</h2>
+        </div>
+        <a href="#contact" class="btn btn-primary">Xem tất cả →</a>
+      </div>
+      <div class="dest-grid">
+        <div class="dest-card fade-up">
+          <div class="dest-img dest-img-1">
+            <div class="placeholder">🏝️</div>
+            <span class="dest-tag hot">Hot</span>
+          </div>
+          <div class="dest-body">
+            <h3>Bali, Indonesia</h3>
+            <div class="dest-location">📍 Đông Nam Á · 5 ngày 4 đêm</div>
+            <div class="dest-meta">
+              <div class="dest-price">
+                Từ
+                <strong>12.990.000₫</strong>
+              </div>
+              <div class="dest-rating">★★★★★ <span>4.8</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img dest-img-2">
+            <div class="placeholder">⛵</div>
+          </div>
+          <div class="dest-body">
+            <h3>Vịnh Hạ Long</h3>
+            <div class="dest-location">📍 Việt Nam · 3 ngày 2 đêm</div>
+            <div class="dest-meta">
+              <div class="dest-price">
+                Từ
+                <strong>4.990.000₫</strong>
+              </div>
+              <div class="dest-rating">★★★★★ <span>4.9</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img dest-img-3">
+            <div class="placeholder">🏖️</div>
+          </div>
+          <div class="dest-body">
+            <h3>Phuket, Thái Lan</h3>
+            <div class="dest-location">📍 Đông Nam Á · 4 ngày 3 đêm</div>
+            <div class="dest-meta">
+              <div class="dest-price">
+                Từ
+                <strong>8.490.000₫</strong>
+              </div>
+              <div class="dest-rating">★★★★☆ <span>4.7</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img dest-img-4">
+            <div class="placeholder">🗻</div>
+            <span class="dest-tag">Mới</span>
+          </div>
+          <div class="dest-body">
+            <h3>Đà Lạt, Việt Nam</h3>
+            <div class="dest-location">📍 Tây Nguyên · 3 ngày 2 đêm</div>
+            <div class="dest-meta">
+              <div class="dest-price">
+                Từ
+                <strong>3.290.000₫</strong>
+              </div>
+              <div class="dest-rating">★★★★★ <span>4.8</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials-header fade-up">
+        <span class="section-label">Đánh giá khách hàng</span>
+        <h2 class="section-title">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+        <p class="section-subtitle">
+          Hơn 10.000 du khách đã tin tưởng Cat Travel cho những chuyến đi của họ.
+        </p>
+      </div>
+      <div class="test-grid">
+        <div class="test-card fade-up">
+          <div class="test-quote">"</div>
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">
+            Chuyến đi Bali cùng Cat Travel là trải nghiệm tuyệt vời nhất mà gia đình tôi
+            từng có. Hướng dẫn viên rất nhiệt tình, lịch trình hợp lý và đồ ăn ngon.
+            Chắc chắn sẽ quay lại!
+          </p>
+          <div class="test-author">
+            <div class="test-avatar a1">MT</div>
+            <div class="test-author-info">
+              <h4>Minh Thảo</h4>
+              <p>Hà Nội · Tour Bali 2024</p>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-up">
+          <div class="test-quote">"</div>
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">
+            Tôi đã book tour Hạ Long cho nhóm bạn và mọi thứ được sắp xếp hoàn hảo.
+            Từ xe đưa đón, du thuyền đến bữa ăn — tất cả đều vượt mong đợi.
+            Cảm ơn Cat Travel!
+          </p>
+          <div class="test-author">
+            <div class="test-avatar a2">ĐH</div>
+            <div class="test-author-info">
+              <h4>Đức Hùng</h4>
+              <p>TP.HCM · Tour Hạ Long 2024</p>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-up">
+          <div class="test-quote">"</div>
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">
+            Dịch vụ tư vấn nhanh, thủ tục đơn giản. Tôi thích cách Cat Travel
+            luôn có những gợi ý sáng tạo cho lịch trình. Đã giới thiệu cho nhiều
+            người bạn và ai cũng hài lòng.
+          </p>
+          <div class="test-author">
+            <div class="test-avatar a3">LA</div>
+            <div class="test-author-info">
+              <h4>Lan Anh</h4>
+              <p>Đà Nẵng · Du lịch tự do 2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANNER ═══ -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-inner fade-up">
+        <h2>Sẵn Sàng Cho Chuyến Đi Tiếp Theo?</h2>
+        <p>Đăng ký tư vấn miễn phí và nhận ưu đãi đặc biệt cho lần đặt tour đầu tiên.</p>
+        <a href="#contact" class="btn btn-primary" style="font-size: 1rem; padding: 16px 40px;">
+          Đặt lịch tư vấn miễn phí →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-up">
+          <span class="section-label">Liên hệ</span>
+          <h2>Hãy Để Chúng Tôi Giúp Bạn Lên Kế Hoạch</h2>
+          <p>
+            Liên hệ với Cat Travel ngay hôm nay để được tư vấn miễn phí
+            và nhận báo giá chi tiết cho chuyến đi mơ ước.
+          </p>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <h4>Địa chỉ</h4>
+              <p>123 Đường Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-text">
+              <h4>Điện thoại</h4>
+              <a href="tel:+84901234567">0901 234 567</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div class="contact-item-text">
+              <h4>Email</h4>
+              <a href="mailto:hello@cattravel.vn">hello@cattravel.vn</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div class="contact-item-text">
+              <h4>Giờ làm việc</h4>
+              <p>Thứ 2 — Thứ 7: 8:00 — 18:00</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form fade-up" id="contactForm">
+          <form id="theForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Họ và tên *</label>
+                <input type="text" id="name" name="name" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại *</label>
+                <input type="tel" id="phone" name="phone" placeholder="0901 234 567" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="email@example.com">
+            </div>
+            <div class="form-group">
+              <label for="destination">Điểm đến quan tâm</label>
+              <select id="destination" name="destination">
+                <option value="">— Chọn điểm đến —</option>
+                <option value="bali">Bali, Indonesia</option>
+                <option value="halong">Vịnh Hạ Long, Việt Nam</option>
+                <option value="phuket">Phuket, Thái Lan</option>
+                <option value="dalat">Đà Lạt, Việt Nam</option>
+                <option value="other">Điểm đến khác</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Tin nhắn</label>
+              <textarea id="message" name="message" placeholder="Cho chúng tôi biết bạn muốn gì..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Gửi yêu cầu tư vấn</button>
+            <p class="form-note">Chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.</p>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="icon">✓</div>
+            <h3>Cảm ơn bạn!</h3>
+            <p>Chúng tôi đã nhận được yêu cầu và sẽ liên hệ lại trong thời gian sớm nhất.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="18" r="17" fill="#0077B6"/>
+              <path d="M11 25 C11 25 13 13 18 10 C23 13 25 25 25 25" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              <circle cx="15" cy="18" r="1.5" fill="#E8A838"/>
+              <circle cx="21" cy="18" r="1.5" fill="#E8A838"/>
+              <path d="M16 21 Q18 23 20 21" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <path d="M11 14 L9 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M25 14 L27 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Cat Travel
+          </div>
+          <p>
+            Đồng hành cùng bạn trên mọi hành trình khám phá.
+            Trải nghiệm du lịch chất lượng, an toàn và đáng nhớ.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="YouTube">▶</a>
+            <a href="#" aria-label="TikTok">♪</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Dịch vụ</h4>
+          <ul>
+            <li><a href="#services">Tour có hướng dẫn</a></li>
+            <li><a href="#services">Du lịch tự do</a></li>
+            <li><a href="#services">Gói gia đình</a></li>
+            <li><a href="#services">Mạo hiểm</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Điểm đến</h4>
+          <ul>
+            <li><a href="#destinations">Bali</a></li>
+            <li><a href="#destinations">Hạ Long</a></li>
+            <li><a href="#destinations">Phuket</a></li>
+            <li><a href="#destinations">Đà Lạt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hỗ trợ</h4>
+          <ul>
+            <li><a href="#contact">Liên hệ</a></li>
+            <li><a href="#">Câu hỏi thường gặp</a></li>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Điều khoản sử dụng</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Cat Travel. Tất cả quyền được bảo lưu.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Chính sách bảo mật</a>
+          <a href="#">Điều khoản dịch vụ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">↑</button>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    // ─── Navigation scroll effect ───
+    const nav = document.getElementById('nav');
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      nav.classList.toggle('scrolled', scrollY > 50);
+      backToTop.classList.toggle('visible', scrollY > 600);
+    });
+
+    // ─── Mobile menu toggle ───
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ─── Back to top ───
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ─── Scroll animations ───
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ─── Contact form handling ───
+    const form = document.getElementById('theForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      const name = form.querySelector('#name').value.trim();
+      const phone = form.querySelector('#phone').value.trim();
+
+      if (!name || !phone) {
+        alert('Vui lòng điền họ tên và số điện thoại.');
+        return;
+      }
+
+      // Show success state
+      form.style.display = 'none';
+      formSuccess.classList.add('show');
+
+      // Reset after 5 seconds
+      setTimeout(() => {
+        form.reset();
+        form.style.display = 'block';
+        formSuccess.classList.remove('show');
+      }, 5000);
+    });
+
+    // ─── Smooth anchor offset for fixed nav ───
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const targetId = anchor.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
